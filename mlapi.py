@@ -15,14 +15,14 @@ class ScoringItem(BaseModel):
     # location: str
     loanAmount: float
     loanTenor: int
-    # Female:int
-    # Male: int
-    # Married: int
-    # Widowed: int
-    # Single: int
+    female:int
+    male: int
+    Married: int
+    Widowed: int
+    Single: int
 
 # rb: read as binary
-with open('modelRCoef2.pkl', 'rb') as f:
+with open('modelRCoef3.pkl', 'rb') as f:
     model = pickle.load(f)
 
 @app.get("/")
@@ -37,6 +37,7 @@ async def scoringEndpoint(item: ScoringItem):
     yhat = model.predict(df)
 
     return {
-        "prediction": int(yhat)
+        "repaymentCoefficient": str(int(yhat))+'%',
+        "message": "This user has a "+str(int(yhat))+"% chance of repaying ₦"+ str(item.loanAmount)+" loan" 
     }
 
