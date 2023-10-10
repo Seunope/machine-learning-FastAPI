@@ -1,0 +1,3 @@
+to run app $ uvicorn main:app --reload
+OR
+python -m uvicorn main:app --reload

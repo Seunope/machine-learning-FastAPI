@@ -1,0 +1,12 @@
+{
+  "age": 30,
+  "location": "Lagos",
+  "gender": "Male",
+  "loanAmount": 35000,
+  "loanTenor": 14,
+  "Female": 0,
+  "Male": 1,
+  "Married": 0,
+  "Widowed": 0,
+  "Single": 1
+}
