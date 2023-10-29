@@ -8,6 +8,18 @@ import pandas as pd
 
 app = FastAPI()
 
+origins = [
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 class ScoringItem(BaseModel):  
     # gender: str
     # maritalStatus: str
@@ -27,13 +39,13 @@ with open('modelRCoef3.pkl', 'rb') as f:
 
 @app.get("/")
 async def scoringEndpoint():
-    return {"Hello": "World Python"}
+    return {"Hello": "World"}
 
 
 @app.post("/send")
 async def scoringEndpoint(item: ScoringItem):
     df = pd.DataFrame( [item.dict().values()], columns=item.dict().keys())
-    # print('DD', df)
+    print('DD', df)
     yhat = model.predict(df)
 
     return {

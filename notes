@@ -1,3 +1,5 @@
 to run app $ uvicorn main:app --reload
 OR
 python -m uvicorn main:app --reload
+
+python -m uvicorn mlapi:app --reload
